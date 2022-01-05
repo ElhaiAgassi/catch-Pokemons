@@ -22,8 +22,8 @@ client.start()
 if __name__ == '__main__':
     while(client.is_running()):
         myGame.init_from_server(client.get_graph(),client.get_agents(),client.get_pokemons())
-        # info = client.get_info().split(",")
-        # move = info[2].split(":")[1]
+        info = client.get_info().split(",")
+        move = info[2].split(":")[1]
         animation.run()
         for agent in myGame.agents:
             if agent.dest == -1:
