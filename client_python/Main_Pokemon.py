@@ -51,6 +51,7 @@ def BestAgent(pokemon: pokemon):
     if best_agentID is not None:
         myGame.getAgent(best_agentID).bored = False
         pokemon.my_catcher = best_agentID
+    else: print(pokemon)
 
 def match_poke2agent():
     for pokemon in myGame.pokemons:
