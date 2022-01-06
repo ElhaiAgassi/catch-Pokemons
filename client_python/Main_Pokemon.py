@@ -52,10 +52,9 @@ def BestAgent(pokemon: pokemon):
         myGame.getAgent(best_agentID).bored = False
         pokemon.my_catcher = best_agentID
 
-
 def match_poke2agent():
-    for agent in myGame.agents:
-        for pokemon in myGame.pokemons:
+    for pokemon in myGame.pokemons:
+        for agent in myGame.agents:
             if (pokemon.my_catcher != None):
                 if agent.id == pokemon.my_catcher: continue
                 shorter = algoGraph.shortest_path(agent.src, pokemon.src)
