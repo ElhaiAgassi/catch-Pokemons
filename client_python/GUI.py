@@ -121,6 +121,7 @@ class GUI:
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
                 pygame.quit()
+                print(client.get_info())
                 exit(0)
                 return False
 
@@ -131,7 +132,7 @@ class GUI:
                         pygame.quit()
                         exit(0)
 
-        screen.fill(Color(WHITE))  # /??
+        screen.fill(Color(WHITE))
         background = transform.scale(self.background, (screen.get_width(), screen.get_height()))
         screen.blit(background, [0, 0])
         self.draw_edges()

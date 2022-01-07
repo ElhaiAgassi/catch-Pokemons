@@ -1,11 +1,13 @@
 import subprocess
+import sys
+
 from GUI import *
 import time
 from GraphAlgo import GraphAlgo
 from myGame import *
 from Objects import *
-
-subprocess.Popen(['powershell.exe', f'java -jar Ex4_Server_v0.0.jar {3}'])
+"""sys.argv[1]"""
+subprocess.Popen(['powershell.exe', f'java -jar Ex4_Server_v0.0.jar {13}'])
 
 PORT = 6666
 HOST = '127.0.0.1'
@@ -51,7 +53,6 @@ def BestAgent(pokemon: pokemon):
     if best_agentID is not None:
         myGame.getAgent(best_agentID).bored = False
         pokemon.my_catcher = best_agentID
-    else: print(pokemon)
 
 def match_poke2agent():
     for pokemon in myGame.pokemons:
@@ -98,8 +99,8 @@ if __name__ == '__main__':
                     next_node = path[1]
                 client.choose_next_edge(
                     '{"agent_id":' + str(agent.id) + ', "next_node_id":' + str(next_node) + '}')
-        # print(client.get_info())
+        print(client.get_info())
 
-        time.sleep(0.05)
+        time.sleep(0.048)
         client.move()
 

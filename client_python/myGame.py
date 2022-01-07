@@ -17,12 +17,8 @@ class myGame:
                 if "pos" in node:
                     data = node["pos"].split(',')
                     self.Graph.add_node(node["id"], (float(data[0]), float(data[1]), float(data[2])))
-
-
-
             for e in mygraph["Edges"]:
                 self.Graph.add_edge(int(e["src"]), int(e["dest"]), float(e["w"]))
-            # print(graph)
 
         if agents is not None:
             self.agents = []
@@ -49,7 +45,7 @@ class myGame:
                 p = pokemon(i['Pokemon'])
                 self.pok_pos(p)
                 self.pokemons.append(p)
-        print(pokemons)
+
             # "Pokemon": {
             #     "value": 5.0,
             #     "type": -1,
