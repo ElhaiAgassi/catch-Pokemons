@@ -12,6 +12,7 @@ class agent:
         for n in xyz:
             self.pos.append(float(n))
         self.bored = True
+        self.assign = None
 
 
     def __repr__(self) -> str:
@@ -19,8 +20,6 @@ class agent:
 
 
 class pokemon:
-
-
     def __init__(self, data: dict) -> None:
         self.value = data['value']
         self.type = int(data['type'])
@@ -31,6 +30,9 @@ class pokemon:
         self.src = None
         self.dest = None
         self.my_catcher = None
+        self.myIndex = None
+        self.pokDict = {}
+
 
     def my_catcher(self):
         if self.my_catcher is not None:

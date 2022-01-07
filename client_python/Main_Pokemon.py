@@ -6,6 +6,7 @@ import time
 from GraphAlgo import GraphAlgo
 from myGame import *
 from Objects import *
+
 """sys.argv[1]"""
 subprocess.Popen(['powershell.exe', f'java -jar Ex4_Server_v0.0.jar {13}'])
 
@@ -14,11 +15,8 @@ HOST = '127.0.0.1'
 
 client = Client()
 client.start_connection(HOST, PORT)
-
-client.add_agent("{\"id\":0}")
-client.add_agent("{\"id\":5}")
-client.add_agent("{\"id\":10}")
-client.add_agent("{\"id\":12}")
+for NA in range(int(json.loads(client.get_info())["GameServer"]["agents"])):
+    client.add_agent("{\"id\":" + str(NA) + "}")
 
 myGame = myGame()
 client.start()
@@ -29,8 +27,8 @@ algoGraph = GraphAlgo(myGame.Graph)
 """ run and init my game """
 
 
-def path2pokemon(id: int, pok: pokemon):
-    shorter = algoGraph.shortest_path(myGame.getAgent(id).src, pok.src)
+def path2pokemon(agent: agent, pok: pokemon):
+    shorter = algoGraph.shortest_path(agent.src, pok.src)
     path = shorter[1]
     path.append(pok.dest)
     return path
@@ -40,6 +38,7 @@ def mypoke(agent):
     for pok in myGame.pokemons:
         if pok.my_catcher == agent.id:
             return path2pokemon(agent.id, pok)
+
 
 def BestAgent(pokemon: pokemon):
     best = float('inf')
@@ -54,21 +53,25 @@ def BestAgent(pokemon: pokemon):
         myGame.getAgent(best_agentID).bored = False
         pokemon.my_catcher = best_agentID
 
-def match_poke2agent():
-    for pokemon in myGame.pokemons:
-        for agent in myGame.agents:
-            if (pokemon.my_catcher != None):
-                if agent.id == pokemon.my_catcher: continue
-                shorter = algoGraph.shortest_path(agent.src, pokemon.src)
-                if (shorter[0] < algoGraph.shortest_path(myGame.getAgent(pokemon.my_catcher).src, pokemon.src)[0]):
-                    myGame.getAgent(pokemon.my_catcher).bored = True
-                    myGame.clearPoke(pokemon.my_catcher)
-                    agent.bored = False
-                    pokemon.my_catcher = agent.id
 
-            else:
-                BestAgent(pokemon)
-                break
+def match_poke2agent():
+    for agent in myGame.agents:
+        minimal_value = float('inf')
+        best_pok = None
+        for pokemon in myGame.pokemons:
+            if pokemon.my_catcher is not None: continue
+            pokVal = pokemon.value
+            pokWeight = algoGraph.shortest_path(agent.src, pokemon.src)[0]
+            if ((pokWeight/pokVal) < minimal_value):
+                best_pok = pokemon.myIndex
+                minimal_value = pokWeight/pokVal
+
+        agent.bored = False
+        myGame.clearPoke(agent.id)
+        myGame.getPoke(best_pok).my_catcher = agent.id
+        agent.assign = best_pok
+    for a in myGame.agents:
+        print(a.id, a.assign)
 
 
 def AgentsBored():
@@ -83,11 +86,11 @@ if __name__ == '__main__':
         myGame.init_from_server(graph=client.get_graph(), agents=client.get_agents(), pokemons=client.get_pokemons())
         animation.run(client)
 
-        while AgentsBored() == True:
-            match_poke2agent()
+        # while AgentsBored() == True:
+        match_poke2agent()
         for agent in myGame.agents:
             next_node = None
-            path = mypoke(agent)
+            path = path2pokemon(agent, myGame.getPoke(agent.assign))
             if path == None:
                 continue
             elif path == -1:
@@ -103,4 +106,3 @@ if __name__ == '__main__':
 
         time.sleep(0.048)
         client.move()
-

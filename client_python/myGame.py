@@ -27,7 +27,6 @@ class myGame:
             for a in my_agents['Agents']:
                 self.agents.append(agent(a['Agent']))
 
-
             # "Agent":
             # {
             #     "id": 0,
@@ -40,9 +39,12 @@ class myGame:
 
         if pokemons is not None:
             self.pokemons.clear()
+            index = 0
             my_pokemons = json.loads(pokemons)
             for i in my_pokemons['Pokemons']:
                 p = pokemon(i['Pokemon'])
+                p.myIndex = index
+                index += 1
                 self.pok_pos(p)
                 self.pokemons.append(p)
 
@@ -83,8 +85,17 @@ class myGame:
             if a.id == id:
                 return a
 
-    def clearPoke(self, Agent_id : int):
+    def clearPoke(self, Agent_id: int):
         for p in self.pokemons:
             if p.my_catcher == Agent_id:
                 p.my_catcher = None
-                print("found and changed", p.src ,pokemon.my_catcher)
+                print("found and changed", p.src, pokemon.my_catcher)
+
+    def getPoke (self, pok_id : int):
+        for p in self.pokemons:
+            if p.myIndex == pok_id:
+                return p
+        return None
+
+
+
