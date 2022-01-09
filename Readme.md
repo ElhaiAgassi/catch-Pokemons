@@ -1,7 +1,6 @@
-
-# Pokemon Game
 @authers Elhai Agassi & Ofek Avi Saadon & Barak sharbi
 
+# Pokemon Game
 ![alt](https://miro.medium.com/max/2800/0*ZLujw1b18CnMFxFa.jpg)
 
 >The Pokemon game is part of a series of assignments related to graphs of an object-oriented course.
