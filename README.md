@@ -25,7 +25,7 @@ https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 Also, for few of the algorithms implementations we assisted GeeksForGeeks and StackOverFlow forums.
 https://www.geeksforgeeks.org/
 https://stackoverflow.com/
-![](data/Pokemon.png)
+![](client_python/data/Pokemon.png)
 
 
 *UML of the project*
@@ -80,7 +80,7 @@ More functions in GraphAlgo that are not implement of GraphInterface:
 
     getinfo -> : Returns the data within this node
 *GUI*
-![](data/Ex4_1.png)
+![](client_python/data/Ex4_1.png)
 
 
 
@@ -88,8 +88,8 @@ More functions in GraphAlgo that are not implement of GraphInterface:
 
 
 *How to run the program*
-   **classes 0-15**
-    "java -jar Ex4_Server_v0.0.jar 1"
+   
+    **java -jar Ex4_Server_v0.0.jar 1** 
 
-![](data/Ex4.png)
+![](client_python/data/Ex4.png)
 
