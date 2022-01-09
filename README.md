@@ -1,5 +1,5 @@
 
--- Ex4 --
+**-- Ex4 --**
 @authers Elhai Agassi & Ofek Avi Saadon & Barak
     ![plt](client_python/data/Pokemon.png)
 
