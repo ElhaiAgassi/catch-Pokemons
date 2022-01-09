@@ -1,7 +1,7 @@
 import json
 import math
-from Departments.Objects import *
-from Departments.GraphAlgo import GraphAlgo
+from .GraphAlgo import GraphAlgo
+from .Objects import *
 
 
 class myGame:

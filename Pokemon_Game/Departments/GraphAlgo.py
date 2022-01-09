@@ -1,7 +1,7 @@
 import copy
 import json
 from typing import List
-from DiGraph import DiGraph
+from .DiGraph import DiGraph
 
 
 class GraphAlgo():

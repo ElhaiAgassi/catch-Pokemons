@@ -1,5 +1,5 @@
 import random
-from Objects import Node
+from .Objects import Node
 
 class DiGraph():
     def __init__(self):
