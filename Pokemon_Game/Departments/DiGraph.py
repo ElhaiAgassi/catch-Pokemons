@@ -1,5 +1,6 @@
 import random
-from .Objects import Node
+from Pokemon_Game.Departments.Objects import Node
+
 
 class DiGraph():
     def __init__(self):
@@ -30,21 +31,24 @@ class DiGraph():
             self.edges[(id1, id2)] = weight
             self.nodes[id1].out[id2] = weight
             self.nodes[id2].In[id1] = weight
+            self.w = weight
             self.mc += 1
+
         else:
             return False
 
     def add_node(self, node_id: int, pos: tuple = None) -> bool:
         if node_id in self.nodes:
             return False
-        if pos!=None:
+        if pos != None:
 
             self.nodes[node_id] = Node(node_id, pos)
             self.mc += 1
-        else:
-            self.nodes[node_id] = Node(node_id,(random.uniform(35.19,35.21),random.uniform(32.1031462,32.10314621),0.0))
-            self.mc += 1
 
+        else:
+            self.nodes[node_id] = Node(node_id,
+                                       (random.uniform(35.19, 35.21), random.uniform(32.1031462, 32.10314621), 0.0))
+            self.mc += 1
         return True
 
     def remove_node(self, node_id: int) -> bool:
@@ -66,12 +70,20 @@ class DiGraph():
 
     def remove_edge(self, node_id1: int, node_id2: int) -> bool:
         if node_id1 in self.nodes and node_id2 in self.nodes:
-            self.edges.pop(node_id1,node_id2)
+            self.edges.pop(node_id1, node_id2)
             self.nodes[node_id1].out.pop(node_id2)
             self.nodes[node_id2].In.pop(node_id1)
             self.mc += 1
             return True
         return False
 
+    w = 0
+    g_node = type
+
+    def get_w(self) -> dict:
+        return self.w
+
+    def get_node(self) -> dict:
+        return self.g_node
     def __repr__(self) -> str:
         return f'{self.nodes} ' f'{self.edges}'
