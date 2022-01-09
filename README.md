@@ -1,7 +1,6 @@
 -- Ex4 --
-
 @authers Elhai Agassi & Ofek Avi Saadon & Barak
-
+![](client_python/data/Pokemon.png)
 
 
 *introduction*
@@ -12,7 +11,6 @@ An important detail is that every pokemon has a different value of points and we
 The Pokémon are located on the graph’s edges, therefore, the agent needs to take the proper edge to “grab” the pokemon.
 As we can see we are given a specific and limited time and moves ,clearly the moves are dependents on the distance of the pokemons from the agents. 
 The mission is to maximize the overall sum of weights of the “grabbed” pokemons.
-![](client_python/data/Pokemon.png)
 *Project Materials*
 
 For understanding all the problem space we assisted the videos of William Fiset and wikipedia:
