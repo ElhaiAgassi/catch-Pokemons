@@ -9,17 +9,17 @@ Also this game includes several stages, a total of 16 stages and allows up to 3 
 Here are some sample photos:
 
 ## Level 1
-![alt](client_python\media\level_1.png)
+![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/client_python/media/level_1.png)
 ## Level 9
-![alt](client_python\media\level_9.png)
+![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/client_python/media/level_9.png)
 ## Level 11
-![alt](client_python\media\level_11.png)
+![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/client_python/media/level_11.png)
 ## Level 13
-![alt](client_python\media\level_13.png)
+![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/client_python/media/level_13.png)
 ## Level 15
-![alt](client_python\media\level_15.png)
+![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/client_python/media/level_15.png)
 ## Video Clip
-![alt](client_python\media\videoClip.gif)
+![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/client_python/media/videoClip.gif)
 
 
 # GUI
