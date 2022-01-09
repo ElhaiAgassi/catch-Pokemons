@@ -1,5 +1,3 @@
-
-
 class agent:
     def __init__(self, data: dict) -> None:
         self.id = int(data['id'])
@@ -12,16 +10,16 @@ class agent:
         for n in xyz:
             self.pos.append(float(n))
         self.bored = True
+        self.pok=None
 
-
-    def __repr__(self) -> str:
-        return f'{self.id} ' f'{self.value},' f'{self.src}' f'{self.dest}' f'{self.speed}' f'{self.pos}'
+    def __repr__(self):
+        return f"id -> {self.id} value -> {self.value} src -> {self.src} dest ->{self.dest} speed -> {self.speed} pos -> {self.pos}"
 
 
 class pokemon:
 
-
-    def __init__(self, data: dict) -> None:
+    def __init__(self, data: dict):
+        self.data=data
         self.value = data['value']
         self.type = int(data['type'])
         p = str(data['pos']).split(',')
@@ -32,18 +30,24 @@ class pokemon:
         self.dest = None
         self.my_catcher = None
 
+    def __gt__(self,pok):
+        return self.value>pok.value
+
+
     def my_catcher(self):
         if self.my_catcher is not None:
             return self.my_catcher
-        else: return - 1
+        else:
+            return - 1
 
     def __repr__(self) -> str:
-        return f'key = {self.value}, 'f' type = {self.type}, 'f' pos = {self.pos}, 'f' src = {self.src},'f' dest = {self.dest}, 'f' my_catcher = {self.my_catcher}'
+        return f'value = {self.value}, 'f' type = {self.type}, 'f' pos = {self.pos}, 'f' src = {self.src},'f' dest = {self.dest}, 'f' my_catcher = {self.my_catcher}'
+
 
 class Node:
-    def __init__(self,key:int,pos:tuple) -> None:
+    def __init__(self, key: int, pos: tuple) -> None:
         self.key = key
-        self.pos = pos
+        self.pos = float(pos[0]),float(pos[1]),float(pos[2])
         self.out = {}
         self.In = {}
 

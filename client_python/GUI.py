@@ -5,14 +5,19 @@ from client import Client
 from myGame import *
 
 WIDTH, HEIGHT = 960, 600
-BLACK, WHITE, DARKBLUE, RED, COUT = (0, 0, 0), (255, 255, 255), (25, 25, 112), (210, 56, 23), (248, 244, 243)
+BLACK, WHITE, DARKBLUE, RED, COUT = (
+    0, 0, 0), (255, 255, 255), (25, 25, 112), (210, 56, 23), (248, 244, 243)
 clock = pygame.time.Clock()
 pygame.init()
-
-Ash = 'GUI_media/Ash.png'
-Pikachu = 'GUI_media/Pikachu.png'
-Pokeball = 'GUI_media/Pokeball.png'
-Background = 'GUI_media/Background.jpg'
+''' ----------------------- Image -------------------------'''
+Ash = 'media/Ash.png'
+Pikachu = 'media/Pikachu.png'
+Pokeball = 'media/Pokeball.png'
+Background = 'media/Background.jpg'
+Charmander = 'media/Charmander.png'
+Brock = 'media/Brock.png'
+Misty = 'media/Misty.png'
+'''-------------------------------------------------------'''
 mixer.init()
 radius = 15
 FONT = pygame.font.SysFont('Arial', 20, bold=True)
@@ -20,13 +25,12 @@ MOVE_FONT = pygame.font.SysFont('Verdana', 25)
 EXIT_FONT = pygame.font.SysFont('Verdana', 40)
 pygame.display.set_caption("Pokemon is better than Digimon")
 screen = display.set_mode((WIDTH, HEIGHT), depth=32, flags=RESIZABLE)
-
+buttonRec=pygame.Rect((2, 2), (58, 38))
+buttonPress=False
 
 class GUI:
-
-    def __init__(self, myGame: myGame()):
+    def __init__(self, myGame):
         self.myGame = myGame
-
         self.min_x = float('inf')
         self.min_y = float('inf')
         self.max_y = float('-inf')
@@ -35,17 +39,20 @@ class GUI:
         for n in self.myGame.Graph.nodes.values():
             x = n.pos[0]
             y = n.pos[1]
-            # print(x, y)
             self.min_x = min(self.min_x, x)
             self.min_y = min(self.min_y, y)
             self.max_x = max(self.max_x, x)
             self.max_y = max(self.max_y, y)
+        self.player=[]
+        self.player.append(image.load(Ash))
+        self.player.append(image.load(Misty))
+        self.player.append(image.load(Brock))
 
         self.background = image.load(Background)
         self.Pokeball = pygame.transform.scale(image.load(Pokeball), (30, 30))
         self.Ash = pygame.transform.scale(image.load(Ash), (30, 58))
         self.Pikachu = image.load(Pikachu)
-
+        self.Charmander =image.load(Charmander)
     def scale(self, data, min_screen, max_screen, min_data, max_data):
         return ((data - min_data) / (max_data - min_data)) * (max_screen - min_screen) + min_screen
 
@@ -63,7 +70,8 @@ class GUI:
             y = n.pos[1]
             x = self.my_scale(x, x=True)
             y = self.my_scale(y, y=True)
-            gfxdraw.filled_circle(screen, int(x), int(y), radius, Color(64, 80, 174))
+            gfxdraw.filled_circle(screen, int(x), int(y),
+                                  radius, Color(64, 80, 174))
             screen.blit(self.Pokeball, (int(x) - 15, int(y) - 15))
 
             id = FONT.render(str(n.key), True, Color(BLACK))
@@ -84,15 +92,16 @@ class GUI:
             X_dest = self.my_scale(dest.pos[0], x=True)
             Y_dest = self.my_scale(dest.pos[1], y=True)
             # draw the line
-            pygame.draw.line(screen, Color(61, 72, 126), (X_src, Y_src), (X_dest, Y_dest), width=5)
+            pygame.draw.line(screen, Color(61, 72, 126),
+                             (X_src, Y_src), (X_dest, Y_dest), width=5)
 
     def draw_agent(self):
         agents = self.myGame.agents
-        for a in agents:
+        for i,a in enumerate(agents) :
             x, y = a.pos[0], a.pos[1]
             x = self.my_scale(float(x), x=True)
             y = self.my_scale(float(y), y=True)
-            screen.blit(self.Ash, (int(x) - 18, int(y) - 18))
+            screen.blit(self.player[i], (int(x) - 18, int(y) - 18))
 
     def draw_pokemons(self):
         pokemons = self.myGame.pokemons
@@ -100,24 +109,31 @@ class GUI:
             x, y = p.pos[0], p.pos[1]
             x = self.my_scale(float(x), x=True)
             y = self.my_scale(float(y), y=True)
-            screen.blit(self.Pikachu, (int(x) - 18, int(y) - 18))
+            if p.type == 1:
+                screen.blit(self.Pikachu, (int(x) - 18, int(y) - 18))
+            else:
+                screen.blit(self.Charmander, (int(x) - 18, int(y) - 18))
 
     def draw_move_grade(self, client: Client):
         info = client.get_info().split(",")
         move = int(info[2].split(":")[1])
         grade = int(info[3].split(":")[1])
         moves = MOVE_FONT.render("Move: " + str(move), True, Color(DARKBLUE))
-        grades = MOVE_FONT.render("Grade: " + str(grade), True, Color(DARKBLUE))
+        grades = MOVE_FONT.render(
+            "Grade: " + str(grade), True, Color(DARKBLUE))
         screen.blit(moves, (10, screen.get_height() - 30))
-        screen.blit(grades, ((screen.get_width() - 140, screen.get_height() - 30)))
+        screen.blit(
+            grades, ((screen.get_width() - 140, screen.get_height() - 30)))
 
     def draw_Buttons(self):
-
-        pygame.draw.rect(screen, button.color, button.rect)
+        global buttonRec
+        pygame.draw.rect(screen, (COUT), buttonRec)
         button_text = MOVE_FONT.render("Exit", True, (RED))
-        screen.blit(button_text, (button.rect.x + 5, button.rect.y + 5))
+        screen.blit(button_text, (buttonRec.x + 5, buttonRec.y + 5))
 
     def run(self, client: Client):
+        global buttonRec
+        global buttonPress
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
                 pygame.quit()
@@ -126,14 +142,14 @@ class GUI:
                 return False
 
             if e.type == pygame.MOUSEBUTTONDOWN:
-                if button.rect.collidepoint(e.pos):
-                    button.press()
-                    if button.pressed:
+                if buttonRec.collidepoint(e.pos):
+                    buttonPress=not buttonPress
+                    if buttonPress :
                         pygame.quit()
                         exit(0)
 
-        screen.fill(Color(WHITE))
-        background = transform.scale(self.background, (screen.get_width(), screen.get_height()))
+        background = transform.scale(
+            self.background, (screen.get_width(), screen.get_height()))
         screen.blit(background, [0, 0])
         self.draw_edges()
         self.drawPokadurs()
@@ -142,16 +158,3 @@ class GUI:
         self.draw_Buttons()
         self.draw_move_grade(client)
         display.update()
-
-
-class Button:
-    def __init__(self, color, rect: pygame.Rect):
-        self.color = color
-        self.rect = rect
-        self.pressed = False
-
-    def press(self):
-        self.pressed = not self.pressed
-
-
-button = Button(color=(COUT), rect=pygame.Rect((2, 2), (58, 38)))

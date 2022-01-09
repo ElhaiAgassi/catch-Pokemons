@@ -1,8 +1,6 @@
 import copy
 import json
 from typing import List
-
-import matplotlib.pyplot as plt
 from DiGraph import DiGraph
 
 
@@ -39,7 +37,6 @@ class GraphAlgo():
         return True
 
 
-
     def save_to_json(self, file_name: str) -> bool:
         graph_dict = {"Edges": [], "Nodes": []}
         for e in self.graph.edges:
@@ -61,7 +58,7 @@ class GraphAlgo():
         return True
 
 
-    def shortest_path(self, id1: int, id2: int) -> (float, list):
+    def shortest_path(self, id1: int, id2: int):
         self.getdijk(id1)
         self.dijkstra.addPath(id2)
         start = self.dijkstra.D[id2]
@@ -69,7 +66,7 @@ class GraphAlgo():
         return (start,end)
 
 
-    def TSP(self, node_lst: List[int]) -> (List[int], float):
+    def TSP(self, node_lst: List[int]):
         try:
             chosen,road = self.inf,[]
             for i in node_lst:
@@ -107,8 +104,7 @@ class GraphAlgo():
         return count
 
 
-
-    def centerPoint(self) -> (int, float):
+    def centerPoint(self):
         try:
             res = (0, self.inf)
             for i in self.graph.nodes:
@@ -119,7 +115,6 @@ class GraphAlgo():
             return res
         except:
             return (0,self.inf)
-
 
     def __repr__(self) -> str:
         return f'{self.graph}'
@@ -133,19 +128,6 @@ class GraphAlgo():
             self.dijkstra.MC = self.graph.mc
             self.dijkstra.goForIt()
             return True
-
-    def plot_graph(self) -> None:
-        for node in self.graph.nodes.values():
-            x = float(node.pos[0])
-            y = float(node.pos[1])
-            id = int(node.key)
-            plt.plot(x, y, markersize=10, marker="o", color="pink")
-            for edge in self.graph.all_out_edges_of_node(id):
-                his_x = float(self.graph.nodes[edge].pos[0])
-                his_y = float(self.graph.nodes[edge].pos[1])
-                plt.annotate("", xy=(x, y), xytext=(his_x, his_y), arrowprops=dict(arrowstyle="<-"))
-        plt.show()
-
 
 
 class dijkstra:
