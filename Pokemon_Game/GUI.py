@@ -2,7 +2,7 @@ import pygame
 from pygame import *
 from pygame import gfxdraw
 from client import Client
-from myGame import *
+from Departments.myGame import *
 
 WIDTH, HEIGHT = 960, 600
 BLACK, WHITE, DARKBLUE, RED, COUT = (

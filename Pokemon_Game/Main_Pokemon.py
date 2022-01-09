@@ -2,9 +2,9 @@ import subprocess
 import sys
 from GUI import *
 import time
-from GraphAlgo import GraphAlgo
-from myGame import *
-from Objects import *
+from Departments.GraphAlgo import GraphAlgo
+from Departments.myGame import *
+from Departments.Objects import *
 """sys.argv[1]"""
 subprocess.Popen(['powershell.exe', f'java -jar Ex4_Server_v0.0.jar {sys.argv[1]}'])
 

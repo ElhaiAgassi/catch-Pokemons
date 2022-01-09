@@ -9,7 +9,7 @@ Also this game includes several stages, a total of 16 stages and allows up to 3 
 Here are some sample photos:
 
 ## Level 1
-![alt](client_python\media\level_1.png)
+![alt]()
 ## Level 9
 ![alt](client_python\media\level_9.png)
 ## Level 11
