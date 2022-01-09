@@ -77,23 +77,23 @@ class TestGraphAlgo(unittest.TestCase):
         self.graphA = GraphAlgo()
 
     def test_shortest_path(self):
-        graphAlgo = GraphAlgo()
-        graphAlgo.graph.add_node(0)
-        graphAlgo.graph.add_node(1)
-        graphAlgo.graph.add_node(2)
-        graphAlgo.graph.add_node(3)
-        graphAlgo.graph.add_node(4)
-        graphAlgo.graph.add_edge(0, 1, 1)
-        graphAlgo.graph.add_edge(1, 2, 6)
-        graphAlgo.graph.add_edge(2, 3, 4)
-        graphAlgo.graph.add_edge(4, 5, 2)
-        self.assertEqual(graphAlgo.shortest_path(0, 1), (1, [0, 1]))
-        self.assertEqual(graphAlgo.shortest_path(0, 2), (7, [0, 1, 2]))
-        self.assertEqual(graphAlgo.shortest_path(0, 3), (11, [0, 1, 2, 3]))
-        graphAlgo.graph.remove_node(1)
-        self.assertEqual(graphAlgo.shortest_path(0, 2), (float('inf'), []))
-        self.assertEqual(graphAlgo.shortest_path(0, 3), (float('inf'), []))
-        self.assertEqual(graphAlgo.shortest_path(0, 4), (float('inf'), []))
+        self.graphAlgo = GraphAlgo()
+        self.graphAlgo.graph.add_node(0)
+        self.graphAlgo.graph.add_node(1)
+        self.graphAlgo.graph.add_node(2)
+        self.graphAlgo.graph.add_node(3)
+        self.graphAlgo.graph.add_node(4)
+        self.graphAlgo.graph.add_edge(0, 1, 1)
+        self.graphAlgo.graph.add_edge(1, 2, 6)
+        self.graphAlgo.graph.add_edge(2, 3, 4)
+        self.graphAlgo.graph.add_edge(4, 5, 2)
+        self.assertEqual(self.graphAlgo.shortest_path(0, 1), (1, [0, 1]))
+        self.assertEqual(self.graphAlgo.shortest_path(0, 2), (7, [0, 1, 2]))
+        self.assertEqual(self.graphAlgo.shortest_path(0, 3), (11, [0, 1, 2, 3]))
+        self.graphAlgo.graph.remove_node(1)
+        self.assertEqual(self.graphAlgo.shortest_path(0, 2), (float('inf'), []))
+        self.assertEqual(self.graphAlgo.shortest_path(0, 3), (float('inf'), []))
+        self.assertEqual(self.graphAlgo.shortest_path(0, 4), (float('inf'), []))
 
     def test_centerPoint(self):
         graphAlgo = GraphAlgo()
@@ -101,24 +101,6 @@ class TestGraphAlgo(unittest.TestCase):
         print(graphAlgo.centerPoint())
         self.assertEqual((6, 8.071366078651435), graphAlgo.centerPoint())
 
-#
-# class Test_myGame(unittest.TestCase):
-#
-#     def __init__(self, methodName: str = ...) -> None:
-#         super().__init__(methodName=methodName)
-#         self.p = myGame()
-
-    # def test_distancePokNode(self):
-    #     graphAlgo = GraphAlgo()
-    #     graphAlgo.load_from_json(r"C:\Users\97254\Desktop\catch-Pokemons-master\Pokemon_Game\data\test.json")
-    #     node1 = graphAlgo.graph.nodes[1]
-    #     dpok = {"value": 5.0,
-    #             "type": -1,
-    #             "pos": "35.197656770719604,32.10191878639921,0.0"}
-    #     pok = self.myGame.pokemon(dpok)
-    #     dis = math.sqrt(
-    #         pow(node1.location[0] - pok.pos[0], 2) + pow(node1.location[1] - pok.pos[1], 2))
-    #     self.assertEqual(0.0056814757193696, dis)
 
 
 if __name__ == '__main__':
