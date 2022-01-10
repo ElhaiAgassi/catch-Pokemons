@@ -24,7 +24,7 @@ Here are some sample photos:
 
 
 # GUI
->The game interface is based on the game library () which can be used to build multi-process games.
+>The game interface is based on the game library PyGame which can be used to build multi-process games.
 We have created a game with a spectacular graphic design, which allows the user to view the score obtained by collecting Pokemon as well as the amount of moves required for this.
 Please note that this interface has the ability to zoom in and out without compromising the user experience, the interface is really responsive.
 # Main_Pokemon
@@ -94,7 +94,7 @@ Please note that this interface has the ability to zoom in and out without compr
 # Clone the repository
 $ git clone https://github.com/ElhaiAgassi/catch-Pokemons.git
 # Go into the repository
-$ cd catch-Pokemons/client_python
+$ cd catch-Pokemons/Pokemon_Game
 # Open the terminal on Windows
 $ Run "py ./Main_Pokemon.py <number graph> [0-15]"
 # Open the terminal on Linux
