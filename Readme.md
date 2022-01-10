@@ -1,5 +1,5 @@
 @authers Elhai Agassi & Ofek Avi Saadon & Barak sharbi
-
+Wiki link Click [here](https://github.com/ElhaiAgassi/catch-Pokemons/wiki/)
 # Pokemon Game
 ![alt](https://miro.medium.com/max/2800/0*ZLujw1b18CnMFxFa.jpg)
 
