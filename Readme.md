@@ -107,5 +107,5 @@ $ Run "py ./Main_Pokemon.py 0"
 ```
 
 ## PyCharm 
-***
+*****
 ![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/media/HowToRun.png)
