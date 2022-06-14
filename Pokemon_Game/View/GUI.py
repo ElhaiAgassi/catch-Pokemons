@@ -1,7 +1,7 @@
 import pygame
 from pygame import gfxdraw
 
-from client import Client
+from Pokemon_Game.Controller.client import Client
 
 WIDTH, HEIGHT = 960, 600
 BLACK, WHITE, DARKBLUE, RED, COUT = (
@@ -9,13 +9,13 @@ BLACK, WHITE, DARKBLUE, RED, COUT = (
 clock = pygame.time.Clock()
 pygame.init()
 ''' ----------------------- Image -------------------------'''
-Ash = 'media/Ash.png'
-Pikachu = 'media/Pikachu.png'
-Pokeball = 'media/Pokeball.png'
-Background = 'media/Background.jpg'
-Charmander = 'media/Charmander.png'
-Brock = 'media/Brock.png'
-Misty = 'media/Misty.png'
+Ash = 'View/media/Ash.png'
+Pikachu = 'View/media/Pikachu.png'
+Pokeball = 'View/media/Pokeball.png'
+Background = 'View/media/Background.jpg'
+Charmander = 'View/media/Charmander.png'
+Brock = 'View/media/Brock.png'
+Misty = 'View/media/Misty.png'
 '''-------------------------------------------------------'''
 pygame.mixer.init()
 radius = 15

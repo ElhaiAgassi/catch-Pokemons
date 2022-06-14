@@ -1,7 +1,8 @@
 import subprocess
 import time
-from Departments.myGame import *
-from GUI import *
+
+from Pokemon_Game.Model.Departments.myGame import *
+from Pokemon_Game.View.GUI import *
 
 """sys.argv[1]"""
 subprocess.Popen(['powershell.exe', f'java -jar Ex4_Server_v0.0.jar 13'])
@@ -35,12 +36,13 @@ pokemons.sort(key=lambda x: x.value, reverse=True)
 numberAgent = int(infoClient["GameServer"]["agents"])
 
 for i in range(numberAgent):
-    client.add_agent("{\"id\":"+str(pokemons[i].src)+"}")
+    client.add_agent("{\"id\":" + str(pokemons[i].src) + "}")
 
 animation = GUI(myGame)
 client.start()
 
 """ run and init my game """
+
 
 def path2pokemon(id: int, pok: pokemon):
     shorter = algoGraph.shortest_path(myGame.getAgent(id).src, pok.src)
@@ -109,7 +111,8 @@ def match_poke2agent():
                     continue
                 shorter = algoGraph.shortest_path(agent.src, pokemon.src)
                 # if agent.pok == None:
-                if (shorter[0] < algoGraph.shortest_path(myGame.getAgent(pokemon.my_catcher).src, pokemon.src)[0] and pokemon.value > pokemonValue):
+                if (shorter[0] < algoGraph.shortest_path(myGame.getAgent(pokemon.my_catcher).src, pokemon.src)[
+                    0] and pokemon.value > pokemonValue):
                     pokemonValue = pokemon.value
                     myGame.getAgent(pokemon.my_catcher).bored = True
                     myGame.clearPoke(pokemon.my_catcher)
@@ -117,7 +120,8 @@ def match_poke2agent():
                     pokemon.my_catcher = agent.id
                     agent.pok = pokemon
                 else:
-                    if (shorter[0] < algoGraph.shortest_path(myGame.getAgent(pokemon.my_catcher).src, pokemon.src)[0] and agent.pok.value <= pokemon.value):
+                    if (shorter[0] < algoGraph.shortest_path(myGame.getAgent(pokemon.my_catcher).src, pokemon.src)[
+                        0] and agent.pok.value <= pokemon.value):
                         myGame.getAgent(pokemon.my_catcher).bored = True
                         myGame.clearPoke(pokemon.my_catcher)
                         agent.bored = False
@@ -127,6 +131,7 @@ def match_poke2agent():
             else:
                 BestAgent(pokemon)
                 break
+
 
 def AgentsBored():
     for agent in myGame.agents:
@@ -156,11 +161,11 @@ if __name__ == '__main__':
                     w = myGame.Graph.edges[(agent.src, agent.dest)]
                     a = distance(agent.pos, destPos.pos)
                     b = distance(p.pos, destPos.pos)
-                    timeSleep = abs(a-b)*(w/a)
-                    time.sleep((timeSleep/agent.speed))
+                    timeSleep = abs(a - b) * (w / a)
+                    time.sleep((timeSleep / agent.speed))
                     client.move()
                     flag = not flag
-                    
+
             if flag:
                 # timeSleep = myGame.Graph.edges[(agent.src, agent.dest)]
                 # time.sleep((timeSleep/agent.speed)/5)
@@ -185,7 +190,3 @@ if __name__ == '__main__':
                     next_node = path[1]
                 client.choose_next_edge(
                     '{"agent_id":' + str(agent.id) + ', "next_node_id":' + str(next_node) + '}')
-
-
-
-

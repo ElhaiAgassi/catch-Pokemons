@@ -10,7 +10,7 @@ class agent:
         for n in xyz:
             self.pos.append(float(n))
         self.bored = True
-        self.pok=None
+        self.pok = None
 
     def __repr__(self):
         return f"id -> {self.id} value -> {self.value} src -> {self.src} dest ->{self.dest} speed -> {self.speed} pos -> {self.pos}"
@@ -19,7 +19,7 @@ class agent:
 class pokemon:
 
     def __init__(self, data: dict):
-        self.data=data
+        self.data = data
         self.value = data['value']
         self.type = int(data['type'])
         p = str(data['pos']).split(',')
@@ -30,9 +30,8 @@ class pokemon:
         self.dest = None
         self.my_catcher = None
 
-    def __gt__(self,pok):
-        return self.value>pok.value
-
+    def __gt__(self, pok):
+        return self.value > pok.value
 
     def my_catcher(self):
         if self.my_catcher:
@@ -47,7 +46,7 @@ class pokemon:
 class Node:
     def __init__(self, key: int, pos: tuple) -> None:
         self.key = key
-        self.pos = float(pos[0]),float(pos[1]),float(pos[2])
+        self.pos = float(pos[0]), float(pos[1]), float(pos[2])
         self.out = {}
         self.In = {}
 

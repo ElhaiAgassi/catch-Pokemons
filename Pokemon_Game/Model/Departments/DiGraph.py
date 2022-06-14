@@ -1,6 +1,6 @@
 import random
 
-from Pokemon_Game.Departments.Objects import Node
+from Pokemon_Game.Model.Departments.Objects import Node
 
 
 class DiGraph():
@@ -41,8 +41,7 @@ class DiGraph():
     def add_node(self, node_id: int, pos: tuple = None) -> bool:
         if node_id in self.nodes:
             return False
-        if pos != None:
-
+        if pos is not None:
             self.nodes[node_id] = Node(node_id, pos)
             self.mc += 1
 
@@ -86,5 +85,6 @@ class DiGraph():
 
     def get_node(self) -> type:
         return self.g_node
+
     def __repr__(self) -> str:
         return f'{self.nodes} ' f'{self.edges}'

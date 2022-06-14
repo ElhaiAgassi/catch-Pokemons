@@ -1,8 +1,8 @@
 import json
 import math
 
-from .GraphAlgo import GraphAlgo
-from .Objects import *
+from Pokemon_Game.Model.Departments.GraphAlgo import GraphAlgo
+from Pokemon_Game.Model.Departments.Objects import *
 
 
 class myGame:
