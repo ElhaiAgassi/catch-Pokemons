@@ -71,19 +71,19 @@ Please note that this interface has the ability to zoom in and out without compr
  
 * Example:
  ```py
-    def __init__(self, methodName: str = ...) -> None:
-        super().__init__(methodName=methodName)
-        self.graph = DiGraph()
-        for id in range(4):
-            self.graph.add_node(id)
+def __init__(self, methodName: str = ...) -> None:
+    super().__init__(methodName=methodName)
+    self.graph = self.DiGraph()
+    for id in range(4):
+        self.graph.add_node(id)
 
-    def test_v_size(self):
-        print("\nTest v_size")
-        print("----------------------------")
-        self.assertEqual(self.graph.v_size(), 4)
-        self.graph.add_node(6)
-        self.assertEqual(self.graph.v_size(), 5)
- ```   
+def test_v_size(self):
+    print("\nTest v_size")
+    print("----------------------------")
+    self.assertEqual(self.graph.v_size(), 4)
+    self.graph.add_node(6)
+    self.assertEqual(self.graph.v_size(), 5)
+```   
 >In this example we build a graph with 4 codes and perform a test on the function v_size() and expect to get truth that the function has indeed returned the expected value
 
 >We will then get another vertex and perform the test again, which means that now the function will return true if the entered vertex increased the number of vertices in the graph
@@ -96,10 +96,9 @@ Please note that this interface has the ability to zoom in and out without compr
 $ git clone https://github.com/ElhaiAgassi/catch-Pokemons.git
 # Go into the repository
 $ cd catch-Pokemons/Pokemon_Game
-# Open the terminal on Windows
-$ Run "py ./Main_Pokemon.py <number graph> [0-15]"
 # Open the terminal on Linux
-$ Run "python3 ./Main_Pokemon.py 0"
+$ Run "python3 ./Main_Pokemon.py <number graph [0-15]>"
+# if doesn't exists you should install package of 'pygame'
 ```
 * example for graph number 0
 ```bash

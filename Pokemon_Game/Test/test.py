@@ -1,9 +1,8 @@
 import os
 import unittest
+
 from Pokemon_Game.Departments.DiGraph import DiGraph
 from Pokemon_Game.Departments.GraphAlgo import GraphAlgo
-from Pokemon_Game.Departments.myGame import myGame
-from pygame import math
 
 
 class TestDiGraph(unittest.TestCase):

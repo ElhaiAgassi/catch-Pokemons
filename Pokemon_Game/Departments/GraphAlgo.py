@@ -1,6 +1,7 @@
 import copy
 import json
 from typing import List
+
 from .DiGraph import DiGraph
 
 

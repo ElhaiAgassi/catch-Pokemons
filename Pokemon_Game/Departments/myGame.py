@@ -1,19 +1,19 @@
 import json
 import math
+
 from .GraphAlgo import GraphAlgo
 from .Objects import *
 
 
 class myGame:
-    def __init__(self,graphAlgo=GraphAlgo()) -> None:
-        self.GraphAlgo =graphAlgo
+    def __init__(self, graphAlgo=GraphAlgo()) -> None:
+        self.GraphAlgo = graphAlgo
         self.Graph = self.GraphAlgo.get_graph()
         self.pokemons = []
         self.agents = []
-      
-        
+
     def init_from_server(self, agents=None, pokemons=None) -> None:
-        if pokemons is not None:
+        if pokemons:
             self.pokemons.clear()
             my_pokemons = json.loads(pokemons)
             for i in my_pokemons['Pokemons']:
@@ -21,15 +21,12 @@ class myGame:
                 self.pok_pos(p)
                 self.pokemons.append(p)
         self.pokemons.sort(key=lambda x: x.value, reverse=True)
-      
-        if agents is not None:
+
+        if agents:
             self.agents = []
             my_agents = json.loads(agents)
             for a in my_agents['Agents']:
                 self.agents.append(agent(a['Agent']))
-            
-
-
 
     def pok_pos(self, pok: pokemon) -> None:
         Epsilon = 0.0000000001
@@ -50,7 +47,6 @@ class myGame:
     def distanceNodes(self, node1: Node, node2: Node):
         return math.sqrt(pow(node1.pos[0] - node2.pos[0], 2) + pow(node1.pos[1] - node2.pos[1], 2))
 
-
     def distancePokNode(self, node1: Node, pok: pokemon):
         return math.sqrt(
             pow(node1.pos[0] - pok.pos[0], 2) + pow(node1.pos[1] - pok.pos[1], 2))
@@ -60,10 +56,8 @@ class myGame:
             if a.id == id:
                 return a
 
-    def clearPoke(self, Agent_id : int):
+    def clearPoke(self, Agent_id: int):
         for p in self.pokemons:
             if p.my_catcher == Agent_id:
                 p.my_catcher = None
-                print("found and changed", p.src ,pokemon.my_catcher)
-            
-
+                print("found and changed", p.src, pokemon.my_catcher)

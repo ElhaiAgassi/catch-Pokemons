@@ -1,4 +1,5 @@
 import random
+
 from Pokemon_Game.Departments.Objects import Node
 
 
@@ -80,10 +81,10 @@ class DiGraph():
     w = 0
     g_node = type
 
-    def get_w(self) -> dict:
+    def get_w(self) -> float:
         return self.w
 
-    def get_node(self) -> dict:
+    def get_node(self) -> type:
         return self.g_node
     def __repr__(self) -> str:
         return f'{self.nodes} ' f'{self.edges}'

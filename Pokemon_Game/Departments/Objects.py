@@ -35,7 +35,7 @@ class pokemon:
 
 
     def my_catcher(self):
-        if self.my_catcher is not None:
+        if self.my_catcher:
             return self.my_catcher
         else:
             return - 1

@@ -1,12 +1,10 @@
 import subprocess
-import sys
-from GUI import *
 import time
-from Departments.GraphAlgo import GraphAlgo
 from Departments.myGame import *
-from Departments.Objects import *
+from GUI import *
+
 """sys.argv[1]"""
-subprocess.Popen(['powershell.exe', f'java -jar Ex4_Server_v0.0.jar {sys.argv[1]}'])
+subprocess.Popen(['powershell.exe', f'java -jar Ex4_Server_v0.0.jar 13'])
 
 flag = True
 PORT = 6666
@@ -64,10 +62,7 @@ def BestAgent(pokemon: pokemon):
     for agent in myGame.agents:
         if agent.bored == True:
             shortPath = algoGraph.shortest_path(agent.src, pokemon.src)
-            # if pokemon.value > bestValue:
-            #     bestValue = pokemon.value
-            # else:
-            #     continue
+
             if shortPath[0] < best or pokemon.value > bestValue:
                 best = shortPath[0]
                 bestValue = pokemon.value
@@ -167,8 +162,8 @@ if __name__ == '__main__':
                     flag = not flag
                     
             if flag:
-                timeSleep = myGame.Graph.edges[(agent.src, agent.dest)]
-                time.sleep((timeSleep/agent.speed)/5)
+                # timeSleep = myGame.Graph.edges[(agent.src, agent.dest)]
+                # time.sleep((timeSleep/agent.speed)/5)
                 client.move()
             flag = True
         myGame.init_from_server(

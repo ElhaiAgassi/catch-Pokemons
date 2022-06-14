@@ -1,12 +1,11 @@
 import pygame
-from pygame import *
 from pygame import gfxdraw
+
 from client import Client
-from Departments.myGame import *
 
 WIDTH, HEIGHT = 960, 600
 BLACK, WHITE, DARKBLUE, RED, COUT = (
-    0, 0, 0), (255, 255, 255), (25, 25, 112), (210, 56, 23), (248, 244, 243)
+                                        0, 0, 0), (255, 255, 255), (25, 25, 112), (210, 56, 23), (248, 244, 243)
 clock = pygame.time.Clock()
 pygame.init()
 ''' ----------------------- Image -------------------------'''
@@ -18,15 +17,16 @@ Charmander = 'media/Charmander.png'
 Brock = 'media/Brock.png'
 Misty = 'media/Misty.png'
 '''-------------------------------------------------------'''
-mixer.init()
+pygame.mixer.init()
 radius = 15
 FONT = pygame.font.SysFont('Arial', 20, bold=True)
 MOVE_FONT = pygame.font.SysFont('Verdana', 25)
 EXIT_FONT = pygame.font.SysFont('Verdana', 40)
 pygame.display.set_caption("Pokemon is better than Digimon")
-screen = display.set_mode((WIDTH, HEIGHT), depth=32, flags=RESIZABLE)
-buttonRec=pygame.Rect((2, 2), (58, 38))
-buttonPress=False
+screen = pygame.display.set_mode((WIDTH, HEIGHT), depth=32, flags=pygame.RESIZABLE)
+buttonRec = pygame.Rect((2, 2), (58, 38))
+buttonPress = False
+
 
 class GUI:
     def __init__(self, myGame):
@@ -43,16 +43,17 @@ class GUI:
             self.min_y = min(self.min_y, y)
             self.max_x = max(self.max_x, x)
             self.max_y = max(self.max_y, y)
-        self.player=[]
-        self.player.append(image.load(Ash))
-        self.player.append(image.load(Misty))
-        self.player.append(image.load(Brock))
+        self.player = []
+        self.player.append(pygame.image.load(Ash))
+        self.player.append(pygame.image.load(Misty))
+        self.player.append(pygame.image.load(Brock))
 
-        self.background = image.load(Background)
-        self.Pokeball = pygame.transform.scale(image.load(Pokeball), (30, 30))
-        self.Ash = pygame.transform.scale(image.load(Ash), (30, 58))
-        self.Pikachu = image.load(Pikachu)
-        self.Charmander =image.load(Charmander)
+        self.background = pygame.image.load(Background)
+        self.Pokeball = pygame.transform.scale(pygame.image.load(Pokeball), (30, 30))
+        self.Ash = pygame.transform.scale(pygame.image.load(Ash), (30, 58))
+        self.Pikachu = pygame.image.load(Pikachu)
+        self.Charmander = pygame.image.load(Charmander)
+
     def scale(self, data, min_screen, max_screen, min_data, max_data):
         return ((data - min_data) / (max_data - min_data)) * (max_screen - min_screen) + min_screen
 
@@ -71,10 +72,10 @@ class GUI:
             x = self.my_scale(x, x=True)
             y = self.my_scale(y, y=True)
             gfxdraw.filled_circle(screen, int(x), int(y),
-                                  radius, Color(64, 80, 174))
+                                  radius, pygame.Color(64, 80, 174))
             screen.blit(self.Pokeball, (int(x) - 15, int(y) - 15))
 
-            id = FONT.render(str(n.key), True, Color(BLACK))
+            id = FONT.render(str(n.key), True, pygame.Color(BLACK))
             rect = id.get_rect(center=(x, y))
             screen.blit(id, rect)
 
@@ -92,12 +93,12 @@ class GUI:
             X_dest = self.my_scale(dest.pos[0], x=True)
             Y_dest = self.my_scale(dest.pos[1], y=True)
             # draw the line
-            pygame.draw.line(screen, Color(61, 72, 126),
+            pygame.draw.line(screen, pygame.Color(61, 72, 126),
                              (X_src, Y_src), (X_dest, Y_dest), width=5)
 
     def draw_agent(self):
         agents = self.myGame.agents
-        for i,a in enumerate(agents) :
+        for i, a in enumerate(agents):
             x, y = a.pos[0], a.pos[1]
             x = self.my_scale(float(x), x=True)
             y = self.my_scale(float(y), y=True)
@@ -118,9 +119,9 @@ class GUI:
         info = client.get_info().split(",")
         move = int(info[2].split(":")[1])
         grade = int(info[3].split(":")[1])
-        moves = MOVE_FONT.render("Move: " + str(move), True, Color(DARKBLUE))
+        moves = MOVE_FONT.render("Move: " + str(move), True, pygame.Color(DARKBLUE))
         grades = MOVE_FONT.render(
-            "Grade: " + str(grade), True, Color(DARKBLUE))
+            "Grade: " + str(grade), True, pygame.Color(DARKBLUE))
         screen.blit(moves, (10, screen.get_height() - 30))
         screen.blit(
             grades, ((screen.get_width() - 140, screen.get_height() - 30)))
@@ -143,12 +144,12 @@ class GUI:
 
             if e.type == pygame.MOUSEBUTTONDOWN:
                 if buttonRec.collidepoint(e.pos):
-                    buttonPress=not buttonPress
-                    if buttonPress :
+                    buttonPress = not buttonPress
+                    if buttonPress:
                         pygame.quit()
                         exit(0)
 
-        background = transform.scale(
+        background = pygame.transform.scale(
             self.background, (screen.get_width(), screen.get_height()))
         screen.blit(background, [0, 0])
         self.draw_edges()
@@ -157,4 +158,4 @@ class GUI:
         self.draw_agent()
         self.draw_Buttons()
         self.draw_move_grade(client)
-        display.update()
+        pygame.display.update()
