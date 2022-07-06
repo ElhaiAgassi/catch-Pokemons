@@ -1,4 +1,3 @@
-@authers Elhai Agassi & Ofek Avi Saadon & Barak sharbi
 ***
 Wiki link Click [here](https://github.com/ElhaiAgassi/catch-Pokemons/wiki/)
 # Pokemon Game
@@ -11,23 +10,25 @@ Also this game includes several stages, a total of 16 stages and allows up to 3 
 Here are some sample photos:
 
 ## Level 1
-![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/media/level_1.png)
+![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/View/media/level_1.png)
 ## Level 9
-![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/media/level_9.png)
+![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/View/media/level_9.png)
 ## Level 11
-![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/media/level_11.png)
+![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/View/media/level_11.png)
 ## Level 13
-![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/media/level_13.png)
+![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/View/media/level_13.png)
 ## Level 15
-![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/media/level_15.png)
+![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/View/media/level_15.png)
 ## Video Clip
-![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/media/videoClip.gif)
+![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/View/media/videoClip.gif)
 
 
 # GUI
 >The game interface is based on the game library PyGame which can be used to build multi-process games.
 We have created a game with a spectacular graphic design, which allows the user to view the score obtained by collecting Pokemon as well as the amount of moves required for this.
 Please note that this interface has the ability to zoom in and out without compromising the user experience, the interface is really responsive.
+
+<!---
 # Main_Pokemon
 * 
 
@@ -35,13 +36,12 @@ Please note that this interface has the ability to zoom in and out without compr
 * function
 >
 
-# Objects
+ # Objects
 * Agent
->
 * Nodes
 >
 * Pokemon
->
+>  --->
 # Algo
 >this is the core class of Graph design. it contains multiple algorithms based on well known Graph theory algorithms like Dijkstra DFS and many more, the main method of this class is to disassemble those algorithms to smaller function in way they can use each other's information and sync with each other, what make Graph Design better quicker and simpler. the whole class outputs is based on the same results format so each function can help multiple answers for different user requests. the main algorithms are:
 
@@ -107,4 +107,4 @@ $ Run "py ./Main_Pokemon.py 0"
 
 ## PyCharm 
 *****
-![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/media/HowToRun.png)
+![alt](https://github.com/ElhaiAgassi/catch-Pokemons/blob/master/Pokemon_Game/View/media/HowToRun.png)
